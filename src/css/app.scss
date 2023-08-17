@@ -1,0 +1,89 @@
+// app global css in SCSS form
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Manrope&family=Press+Start+2P&display=swap");
+
+.navbar {
+  background-image: linear-gradient(to right, $primary, $secondary);
+  width: inherit;
+  min-width: inherit;
+  max-width: inherit;
+}
+.footer {
+  background-color: $accent;
+}
+.ms-text {
+  font-family: Tahoma, sans-serif;
+  font-weight: 900 !important;
+}
+.black {
+  color: black;
+}
+.github {
+  color: #9f7be1;
+}
+.linkedin {
+  color: #0a66c2;
+}
+.ie {
+  color: $primary;
+}
+.screen-buttons {
+  max-width: 6rem !important;
+}
+body {
+  font-family: Tahoma, sans-serif;
+  background-color: rgb(60, 110, 166);
+}
+.body-bg {
+  background-color: rgb(60, 110, 166);
+}
+.draggable-header {
+  z-index: 10;
+  cursor: move;
+}
+.inherit-width {
+  width: inherit;
+  min-width: inherit;
+  max-width: inherit;
+}
+.draggable {
+  position: absolute;
+  z-index: 9;
+}
+.button {
+  background-color: $accent;
+  color: black;
+  border: 1px solid black;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+.window-lr {
+  max-width: 35rem;
+}
+.outset-border {
+  outline: 2px outset $seperator !important;
+}
+.inset-border {
+  outline: 3px inset $seperator !important;
+}
+.inset-border-light {
+  outline: 2px inset $seperator !important;
+}
+.window {
+  background-color: white;
+  padding: 1rem;
+  width: inherit;
+  min-width: inherit;
+  max-width: inherit;
+}
+.header {
+  font-family: Tahoma, sans-serif;
+}
+.file-bar {
+  border-right: 1px solid $seperator;
+}
+.game-text {
+  font-family: "Press Start 2P", cursive;
+}
+.display-none {
+  display: none;
+}
