@@ -8,7 +8,6 @@
         <q-btn
           label="My Resume"
           square
-          round
           flat
           text-color="white"
           class="body-bg screen-buttons"
@@ -20,7 +19,6 @@
         <q-btn
           label="About Me"
           square
-          round
           flat
           text-color="white"
           class="body-bg screen-buttons"
@@ -29,6 +27,10 @@
           stack
           no-caps
         />
+        <q-btn square flat stack>
+          <q-avatar icon="mdi-file-document" text-color="white"> </q-avatar>
+          abc
+        </q-btn>
       </div>
     </div>
 
@@ -53,6 +55,7 @@
           flat
           text-color="white"
           class="body-bg screen-buttons"
+          size="xl"
           icon="folder"
           padding="1rem"
           stack
