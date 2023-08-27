@@ -527,7 +527,7 @@
           v-if="$q.platform.is.desktop"
         />
 
-        <q-toolbar-title> </q-toolbar-title>
+        <q-toolbar-title v-if="$q.platform.is.desktop"> </q-toolbar-title>
         <div class="q-pa-auto outset-border">
           <q-btn
             square
@@ -549,6 +549,7 @@
           />
           <q-btn
             square
+            :dense="!$q.platform.is.desktop"
             aria-label="Clock"
             :label="clock"
             class="q-mx-auto ms-text black"
