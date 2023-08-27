@@ -5,31 +5,42 @@
       </div>-->
     <div class="row">
       <div class="col">
+        <q-btn square flat stack no-caps class="home-icon">
+          <q-avatar icon="mdi-robot" text-color="deep-purple"> </q-avatar>
+          <div class="white">About Me</div>
+        </q-btn>
+        <q-btn square flat stack no-caps class="home-icon">
+          <q-avatar icon="mdi-cards" text-color="teal"> </q-avatar>
+          <div class="white">Projects</div>
+        </q-btn>
         <q-btn
-          label="My Resume"
           square
           flat
-          text-color="white"
-          class="body-bg screen-buttons"
-          icon="mdi-file-document"
-          padding="1rem"
           stack
           no-caps
-        />
-        <q-btn
-          label="About Me"
-          square
-          flat
-          text-color="white"
-          class="body-bg screen-buttons"
-          icon="folder"
-          padding="1rem"
-          stack
-          no-caps
-        />
-        <q-btn square flat stack>
-          <q-avatar icon="mdi-file-document" text-color="white"> </q-avatar>
-          abc
+          class="home-icon"
+          href="https://docs.google.com/document/d/1Wxca0DxutLRAWSDXOPhp7D2B1HytLYEv/edit?usp=sharing&ouid=105661401220528503426&rtpof=true&sd=true"
+          target="_blank"
+        >
+          <q-avatar icon="mdi-file-document" text-color="brown"> </q-avatar>
+          <div class="white">Resume</div>
+        </q-btn>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <q-btn square flat stack no-caps class="home-icon">
+          <q-avatar icon="work" text-color="primary"> </q-avatar>
+          <div class="white">Experience</div>
+        </q-btn>
+        <q-btn square flat stack no-caps class="home-icon">
+          <q-avatar icon="mdi-school" text-color="black"> </q-avatar>
+          <div class="white">Education</div>
+        </q-btn>
+        <q-btn square flat stack no-caps class="home-icon">
+          <q-avatar icon="mdi-brain" text-color="red"> </q-avatar>
+          <div class="white">Skills</div>
         </q-btn>
       </div>
     </div>
@@ -37,38 +48,27 @@
     <div class="row">
       <div class="col">
         <q-btn
-          label="My Experience"
           square
-          round
           flat
-          text-color="white"
-          class="body-bg screen-buttons"
-          icon="folder"
-          padding="1rem"
           stack
           no-caps
-        />
-        <q-btn
-          label="My Projects"
-          square
-          round
-          flat
-          text-color="white"
-          class="body-bg screen-buttons"
-          size="xl"
-          icon="folder"
-          padding="1rem"
-          stack
-          no-caps
-        />
+          class="home-icon"
+          href="https://fq2021.netlify.app/"
+          target="_blank"
+        >
+          <q-avatar icon="mdi-leaf" text-color="green"> </q-avatar>
+          <div class="white">LoL FlyQuest</div>
+        </q-btn>
       </div>
     </div>
 
-    <div style="max-width: 60rem">
+    <div>
       <ProjectWindow
-        :title="windows[0].title"
-        :body="windows[0].body"
-        :type="'about'"
+        :title="windows[w].title"
+        :type="w"
+        v-for="w in opened"
+        v-bind:key="w"
+        :id="w"
       />
     </div>
   </div>
@@ -85,38 +85,28 @@ export default {
     ProjectWindow,
   },
   props: ["opened"],
-  setup() {
-    const $q = useQuasar();
-
-    return {
-      layout: computed(() => {
-        return $q.screen.lt.sm
-          ? "dense"
-          : $q.screen.lt.md
-          ? "comfortable"
-          : "loose";
-      }),
-    };
-  },
   data() {
     return {
-      windows: [
-        {
+      windows: {
+        about: {
           title: "About Me",
-          type: "about",
-          body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi proin sed libero enim sed faucibus turpis in eu. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing. Velit egestas dui id ornare arcu. Purus semper eget duis at tellus. Et netus et malesuada fames ac turpis egestas. Et malesuada fames ac turpis egestas integer eget aliquet nibh. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Fermentum posuere urna nec tincidunt. Sed risus pretium quam vulputate dignissim suspendisse.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi proin sed libero enim sed faucibus turpis in eu. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing. Velit egestas dui id ornare arcu. Purus semper eget duis at tellus. Et netus et malesuada fames ac turpis egestas. Et malesuada fames ac turpis egestas integer eget aliquet nibh. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Fermentum posuere urna nec tincidunt. Sed risus pretium quam vulputate dignissim suspendisse.`,
         },
-        {
+        exp: {
           title: "My Experience",
-          type: "exp",
-          body: `woof woof, meow meow.`,
         },
-        {
+        projects: {
           title: "My Projects",
-          type: "projects",
-          body: `projects here`,
         },
-      ],
+        intro: {
+          title: "Welcome to my site!",
+        },
+        edu: {
+          title: "My Education",
+        },
+        skills: {
+          title: "My Skills",
+        },
+      },
     };
   },
 };

@@ -1,19 +1,11 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useCounterStore = defineStore('counter', {
+export const openPages = defineStore("page", {
   state: () => ({
-    counter: 0
+    page: "",
   }),
 
-  getters: {
-    doubleCount (state) {
-      return state.counter * 2
-    }
-  },
+  getters: {},
 
-  actions: {
-    increment () {
-      this.counter++
-    }
-  }
-})
+  actions: {},
+});

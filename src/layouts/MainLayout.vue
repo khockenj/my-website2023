@@ -1,7 +1,116 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-page-container>
-      <router-view :opened="opened" />
+      <div class="q-pa-md">
+        <div class="row">
+          <div class="col">
+            <q-btn
+              square
+              flat
+              stack
+              no-caps
+              class="home-icon"
+              @click="openWindow(this, 'about')"
+            >
+              <q-avatar icon="mdi-robot" text-color="deep-purple"> </q-avatar>
+              <div class="white">About Me</div>
+            </q-btn>
+            <q-btn
+              square
+              flat
+              stack
+              no-caps
+              class="home-icon"
+              @click="openWindow(this, 'projects')"
+            >
+              <q-avatar icon="mdi-cards" text-color="teal"> </q-avatar>
+              <div class="white">Projects</div>
+            </q-btn>
+            <q-btn
+              square
+              flat
+              stack
+              no-caps
+              class="home-icon"
+              href="https://docs.google.com/document/d/1Wxca0DxutLRAWSDXOPhp7D2B1HytLYEv/edit?usp=sharing&ouid=105661401220528503426&rtpof=true&sd=true"
+              target="_blank"
+            >
+              <q-avatar icon="mdi-file-document" text-color="brown"> </q-avatar>
+              <div class="white">Resume</div>
+            </q-btn>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <q-btn
+              square
+              flat
+              stack
+              no-caps
+              class="home-icon"
+              @click="openWindow(this, 'exp')"
+            >
+              <q-avatar icon="work" text-color="primary"> </q-avatar>
+              <div class="white">Experience</div>
+            </q-btn>
+            <q-btn
+              square
+              flat
+              stack
+              no-caps
+              class="home-icon"
+              @click="openWindow(this, 'edu')"
+            >
+              <q-avatar icon="mdi-school" text-color="black"> </q-avatar>
+              <div class="white">Education</div>
+            </q-btn>
+            <q-btn
+              square
+              flat
+              stack
+              no-caps
+              class="home-icon"
+              @click="openWindow(this, 'skills')"
+            >
+              <q-avatar icon="mdi-brain" text-color="red"> </q-avatar>
+              <div class="white">Skills</div>
+            </q-btn>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <q-btn
+              square
+              flat
+              stack
+              no-caps
+              class="home-icon"
+              href="https://fq2021.netlify.app/"
+              target="_blank"
+            >
+              <q-avatar icon="mdi-leaf" text-color="green"> </q-avatar>
+              <div class="white">LoL FlyQuest</div>
+            </q-btn>
+          </div>
+        </div>
+
+        <div style="max-width: 60rem">
+          <ProjectWindow
+            :title="windows[w].title"
+            :type="w"
+            v-for="w in opened"
+            v-bind:key="w"
+            :id="w"
+            :active="active"
+            @closed-me="closeWindow"
+            @set-active="setActive"
+            :count="count"
+          />
+        </div>
+      </div>
+      <!--<router-view />-->
     </q-page-container>
 
     <q-footer class="footer" elevated>
@@ -21,7 +130,7 @@
             class="bg-accent"
             style="width: 15rem"
           >
-            <q-item clickable>
+            <q-item clickable v-if="$q.platform.is.desktop">
               <q-item-section avatar>
                 <q-icon color="teal" name="mdi-cards" />
               </q-item-section>
@@ -58,7 +167,7 @@
                 </q-item>
               </q-menu>
             </q-item>
-            <q-item clickable>
+            <q-item clickable v-if="$q.platform.is.desktop">
               <q-item-section avatar>
                 <q-icon color="red" name="mdi-brain" />
               </q-item-section>
@@ -268,28 +377,32 @@
                 </q-item>
               </q-menu>
             </q-item>
-            <q-item clickable>
+            <q-item clickable @click="openWindow(this, 'about')">
               <q-item-section avatar>
                 <q-icon color="deep-purple" name="mdi-robot" />
               </q-item-section>
 
               <q-item-section>About Me</q-item-section>
             </q-item>
-            <q-item clickable>
+            <q-item clickable @click="openWindow(this, 'exp')">
               <q-item-section avatar>
                 <q-icon color="primary" name="work" />
               </q-item-section>
 
               <q-item-section>Experience</q-item-section>
             </q-item>
-            <q-item clickable>
+            <q-item clickable @click="openWindow(this, 'edu')">
               <q-item-section avatar>
                 <q-icon color="black" name="mdi-school" />
               </q-item-section>
 
               <q-item-section>Education</q-item-section>
             </q-item>
-            <q-item clickable>
+            <q-item
+              clickable
+              href="https://docs.google.com/document/d/1Wxca0DxutLRAWSDXOPhp7D2B1HytLYEv/edit?usp=sharing&ouid=105661401220528503426&rtpof=true&sd=true"
+              target="_blank"
+            >
               <q-item-section avatar>
                 <q-icon color="brown" name="mdi-file-document" />
               </q-item-section>
@@ -300,13 +413,16 @@
         </q-btn>
         <q-separator color="seperator" vertical />
         <div class="q-mx-md outset-border">
-          <q-btn
+          <!--<q-btn
             square
             dense
             icon="mdi-microsoft-internet-explorer"
             aria-label="LinkedIn"
             class="q-mx-auto ms-text linkedin"
+            href=""
+            target="_blank"
           />
+          -->
           <q-btn
             square
             dense
@@ -314,6 +430,7 @@
             aria-label="Email"
             class="q-mr-auto ms-text ie"
             @click="copyEmail()"
+            v-if="$q.platform.is.desktop"
           >
             <q-popup-proxy>
               <q-banner class="bg-accent">
@@ -331,6 +448,7 @@
             icon="bi-question-circle"
             aria-label="About this site"
             class="q-mx-auto ms-text"
+            @click="openWindow(this, 'intro')"
           />
         </div>
 
@@ -341,8 +459,13 @@
           label="About Me"
           no-caps
           text-color="deep-purple"
-          class="q-mr-sm ms-text black inset-border"
-          @click="open('about')"
+          class="q-mr-sm ms-text black"
+          :class="{
+            'inset-border': active == 'about',
+            'outset-border': active != 'about',
+          }"
+          @click="openWindow(this, 'about')"
+          v-if="$q.platform.is.desktop"
         />
         <q-btn
           square
@@ -351,8 +474,13 @@
           label="Projects"
           no-caps
           text-color="teal"
-          class="q-mr-sm ms-text black outset-border"
-          @click="open('projects')"
+          class="q-mr-sm ms-text black"
+          :class="{
+            'inset-border': active == 'projects',
+            'outset-border': active != 'projects',
+          }"
+          @click="openWindow(this, 'projects')"
+          v-if="$q.platform.is.desktop"
         />
         <q-btn
           square
@@ -361,8 +489,13 @@
           label="Skills"
           no-caps
           text-color="red"
-          class="q-mr-sm ms-text black outset-border"
-          @click="open('skills')"
+          class="q-mr-sm ms-text black"
+          :class="{
+            'inset-border': active == 'skills',
+            'outset-border': active != 'skills',
+          }"
+          @click="openWindow(this, 'skills')"
+          v-if="$q.platform.is.desktop"
         />
         <q-btn
           square
@@ -371,8 +504,13 @@
           label="Experience"
           no-caps
           text-color="primary"
-          class="q-mr-sm ms-text outset-border"
-          @click="open('exp')"
+          class="q-mr-sm ms-text black"
+          :class="{
+            'inset-border': active == 'exp',
+            'outset-border': active != 'exp',
+          }"
+          @click="openWindow(this, 'exp')"
+          v-if="$q.platform.is.desktop"
         />
         <q-btn
           square
@@ -380,8 +518,13 @@
           aria-label="Education"
           label="Education"
           no-caps
-          class="q-mr-sm ms-text black outset-border"
-          @click="open('edu')"
+          class="q-mr-sm ms-text black"
+          :class="{
+            'inset-border': active == 'edu',
+            'outset-border': active != 'edu',
+          }"
+          @click="openWindow(this, 'edu')"
+          v-if="$q.platform.is.desktop"
         />
 
         <q-toolbar-title> </q-toolbar-title>
@@ -419,18 +562,32 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-
+import ProjectWindow from "components/ProjectWindow.vue";
 export default defineComponent({
   name: "MainLayout",
-
-  components: {},
-  data() {
-    return {
-      clock: "",
-      opened: "",
-    };
+  components: {
+    ProjectWindow,
   },
   methods: {
+    waitForElementToExist: function (selector) {
+      return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(() => {
+          if (document.querySelector(selector)) {
+            resolve(document.querySelector(selector));
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.body, {
+          subtree: true,
+          childList: true,
+        });
+      });
+    },
     updateClock: function () {
       let td = new Date();
       this.clock = td.toLocaleTimeString([], {
@@ -455,12 +612,59 @@ export default defineComponent({
         }
       );
     },
-    open: (flag) => {
-      opened = flag;
+    openWindow: (self, flag) => {
+      self.opened.indexOf(flag) === -1
+        ? self.opened.push(flag)
+        : console.log("This item already exists");
+      self.active = flag;
+      let el = self.waitForElementToExist("#" + flag);
+      el.then(() => {
+        self.setActive(flag);
+      });
+    },
+    closeWindow(page) {
+      this.opened = this.opened.filter((item) => item !== page);
+      if (page == this.active) {
+        this.active = this.opened[this.opened.length - 1];
+      }
+    },
+    setActive(page) {
+      this.active = page;
+      let el = document.getElementById(page);
+      el.firstChild.style.zIndex = this.count;
+      this.count++;
     },
   },
   created() {
     this.updateClock();
+  },
+  data() {
+    return {
+      clock: "",
+      count: 0,
+      opened: ["intro"],
+      active: "intro",
+      windows: {
+        about: {
+          title: "About Me",
+        },
+        exp: {
+          title: "My Experience",
+        },
+        projects: {
+          title: "My Projects",
+        },
+        intro: {
+          title: "Welcome!",
+        },
+        edu: {
+          title: "My Education",
+        },
+        skills: {
+          title: "My Skills",
+        },
+      },
+    };
   },
 });
 </script>
