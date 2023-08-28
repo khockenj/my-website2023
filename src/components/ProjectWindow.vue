@@ -21,7 +21,6 @@
           navbar: active == type,
           'navbar-grey': active != type,
         }"
-        :style="''"
         @mousedown="dragMouseDown"
       >
         {{ title }}
