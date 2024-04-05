@@ -22,12 +22,12 @@
       <q-item-label header>Certifications</q-item-label>
       <q-item>
         <q-item-section top avatar>
-          <q-icon color="green" name="bi-question-circle" size="lg" />
+          <q-icon color="red" name="security" size="lg" />
         </q-item-section>
 
         <q-item-section>
-          <q-item-label>Coming soon...</q-item-label>
-          <q-item-label caption></q-item-label>
+          <q-item-label>CompTIA Security+</q-item-label>
+          <q-item-label caption>March 2024</q-item-label>
         </q-item-section>
       </q-item>
       <!--
