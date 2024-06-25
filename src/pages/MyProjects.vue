@@ -106,6 +106,9 @@ export default {
         skills: {
           title: "My Skills",
         },
+        books: {
+          title: "Recent Reads",
+        },
       },
     };
   },

@@ -111,6 +111,7 @@
         <MySkills v-if="type == 'skills'" />
         <MyEducation v-if="type == 'edu'" />
         <MyIntro v-if="type == 'intro'" />
+        <MyBooks v-if="type == 'books'" />
       </div>
     </div>
   </div>
@@ -124,6 +125,7 @@ import MyProjects from "components/MyProjects.vue";
 import MySkills from "components/MySkills.vue";
 import MyEducation from "components/MyEducation.vue";
 import MyIntro from "components/MyIntro.vue";
+import MyBooks from "components/MyBooks.vue";
 
 export default defineComponent({
   name: "ProjectWindow",
@@ -134,6 +136,7 @@ export default defineComponent({
     MySkills,
     MyEducation,
     MyIntro,
+    MyBooks,
   },
   props: ["title", "active", "type", "count"],
   data() {

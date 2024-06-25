@@ -526,6 +526,20 @@
           @click="openWindow(this, 'edu')"
           v-if="$q.platform.is.desktop"
         />
+        <q-btn
+          square
+          icon="mdi-book-open-variant"
+          aria-label="Recent Reads"
+          label="Recent Reads"
+          no-caps
+          class="q-mr-sm ms-text orange"
+          :class="{
+            'inset-border': active == 'books',
+            'outset-border': active != 'books',
+          }"
+          @click="openWindow(this, 'books')"
+          v-if="$q.platform.is.desktop"
+        />
 
         <q-toolbar-title v-if="$q.platform.is.desktop"> </q-toolbar-title>
         <div class="q-pa-auto outset-border">
@@ -663,6 +677,9 @@ export default defineComponent({
         },
         skills: {
           title: "My Skills",
+        },
+        books: {
+          title: "Recent Reads",
         },
       },
     };
